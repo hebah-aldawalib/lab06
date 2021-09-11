@@ -27,13 +27,13 @@ export class App extends Component {
       this.setState({
         locationData: response.data[0],
       });
-      const response2 = await axios.get(
+      const response2 = await axios.get (
         `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_IQ_KEY}&center=${this.state.locationData.lat},${this.state.locationData.lon}&format=jpg `
       );
       
 
       this.setState({
-        error: false,
+        error: false ,
         locationImg: response2.config.url,
       });
 
