@@ -34,7 +34,7 @@ export class App extends Component {
       });
 
       const response3 = await axios.get(
-        `${process.env.REACT_APP_SERVER_URL}/weathers?city=${location}`
+        `${process.env.REACT_APP_SERVER_URL}/weather?city=${location}`
       );
       console.log(response3);
       this.setState({
