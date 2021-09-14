@@ -27,38 +27,28 @@ export class App extends Component {
       const response2 = await axios.get(
         `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_IQ_KEY}&center=${this.state.locationData.lat},${this.state.locationData.lon}&format=jpg `
       );
-      
 
       this.setState({
         error: false,
         locationImg: response2.config.url,
       });
 
-
-
-      //here
       const response3 = await axios.get(
         `${process.env.REACT_APP_SERVER_URL}/weathers?city=${location}`
       );
-console.log(response3)
+      console.log(response3);
       this.setState({
         locationInfos: response3.data,
       });
-//to
-// const response4 = await axios.get(
-//   `${process.env.REACT_APP_SERVER_URL}/movies?query=${location}`
-// );
+      //to
+      // const response4 = await axios.get(
+      //   `${process.env.REACT_APP_SERVER_URL}/movies?query=${location}`
+      // );
 
-// this.setState({
-//   locationMovie: response4.data,
-// });
-// console.log(respones4);
-
-
-
-
-
-
+      // this.setState({
+      //   locationMovie: response4.data,
+      // });
+      // console.log(respones4);
 
       console.log("our cs response", this.locationImg);
     } catch (error) {
@@ -69,8 +59,6 @@ console.log(response3)
     }
   };
   render() {
-
-
     return (
       <div>
         <form onSubmit={this.submitForm}>
@@ -84,10 +72,9 @@ console.log(response3)
           <input name="locationName" type="text" placeholder="Enter Location" />
           <input type="submit" value="Search" />
         </form>
-
-        {!this.state.error &&
+        {!this.state.error && (
           <div>
-             <p style={{ color: "white", fontSize:"2em"}} >The Selected Map </p>
+            <p style={{ color: "white", fontSize: "2em" }}>The Selected Map </p>
             <Card
               style={{
                 width: "30rem",
@@ -108,36 +95,35 @@ console.log(response3)
                 <Card.Text>latitude : {this.state.locationData.lat}</Card.Text>
                 <Card.Text>longitude : {this.state.locationData.lon}</Card.Text>
 
-                {this.state.locationInfos.map(element => {
-                  return <Card.Text>Weather : {element.date}    {element.description}</Card.Text>
+                {this.state.locationInfos.map((element) => {
+                  return (
+                    <Card.Text>
+                      Weather : {element.date} {element.description}
+                    </Card.Text>
+                  );
                 })}
-
-
-
-
-
-
-
               </Card.Body>
             </Card>
             <img src={this.state.locationImg} alt={""} />
           </div>
-        }
-
-
-        
-          {this.state.error && <p style={{ color: "white",fontSize:"2em",backgroundColor: "red" }}>Location not found try again </p>}
-    
-
+        )}
+        {this.state.error && (
+          <p
+            style={{ color: "white", fontSize: "2em", backgroundColor: "red" }}
+          >
+            Location not found try again{" "}
+          </p>
+        )}
         <div>
-          {this.state.error && <p style={{ color: "white", }}>Location not found try again </p>}
-          {this.state.locationData.lon && <p style={{ color: "white", }} >The Selected Map </p>}
-
+          {this.state.error && (
+            <p style={{ color: "white" }}>Location not found try again </p>
+          )}
+          {this.state.locationData.lon && (
+            <p style={{ color: "white" }}>The Selected Map </p>
+          )}
         </div>
- main
-        <div >
-
-        </div>
+        {/* main */}
+        <div></div>
       </div>
     );
   }
