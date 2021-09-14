@@ -41,20 +41,20 @@ export class App extends Component {
 
       //here
       const response3 = await axios.get(
-        `${process.env.REACT_APP_server_url}/weathers?city=${location}`
+        `${process.env.REACT_APP_SERVER_URL}/weathers?city=${location}`
       );
 // console.log(response3)
       this.setState({
         locationInfos: response3.data,
       });
 //to
-const response4 = await axios.get(
-  `${process.env.REACT_APP_server_url}/movies?query=${location}`
-);
+// const response4 = await axios.get(
+//   `${process.env.REACT_APP_SERVER_URL}/movies?query=${location}`
+// );
 
-this.setState({
-  locationMovie: response4.data,
-});
+// this.setState({
+//   locationMovie: response4.data,
+// });
 // console.log(respones4);
 
 
@@ -83,8 +83,10 @@ this.setState({
           <input name="locationName" type="text" placeholder="Enter Location" />
           <input type="submit" value="Search" />
         </form>
+
         {!this.state.error &&
           <div>
+             <p style={{ color: "white", fontSize:"2em"}} >The Selected Map </p>
             <Card
               style={{
                 width: "30rem",
@@ -118,11 +120,9 @@ this.setState({
         }
 
 
-        <div>
-          {this.state.error && <p style={{ color: "white", }}>Location not found try again </p>}
-          {this.state.locationData.lon && <p style={{ color: "white", }} >The Selected Map </p>}
-
-        </div>
+        
+          {this.state.error && <p style={{ color: "white",fontSize:"2em",backgroundColor: "red" }}>Location not found try again </p>}
+    
         <div >
         {/* <Movies locationMovie={this.state.locationMovie} /> */}
         </div>
